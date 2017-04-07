@@ -11,11 +11,17 @@ img {
 .zoom {
     /**adjust scale to desired size,
     add browser prefixes**/
-    -ms-transform: scale(2.5);
-    -moz-transform: scale(2.5);
-    -webkit-transform: scale(2.5);
-    -o-transform: scale(2.5);
-    transform: scale(2.5);
+    -ms-transform: scale(1.9);
+    -moz-transform: scale(1.9);
+    -webkit-transform: scale(1.9);
+    -o-transform: scale(1.9);
+    transform: scale(1.9);
     position:relative;
     z-index:100;
+}
+
+.office-info {
+    position: fixed;
+    top: 10px;
+    left: 10px;
 }
