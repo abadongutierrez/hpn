@@ -8,20 +8,33 @@ img {
     margin-bottom:11vw;
 }
 
-.zoom {
-    /**adjust scale to desired size,
-    add browser prefixes**/
-    -ms-transform: scale(1.9);
-    -moz-transform: scale(1.9);
-    -webkit-transform: scale(1.9);
-    -o-transform: scale(1.9);
-    transform: scale(1.9);
-    position:relative;
-    z-index:100;
-}
-
 .office-info {
     position: fixed;
     top: 10px;
     left: 10px;
+}
+
+.mood-button {
+    width: 250px;
+    height: 250px;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0, 0.7);
+    overflow-x: hidden;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    color: white;
 }
