@@ -1,76 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Today I feel like</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>Today I feel like</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                function hideThanksMessage() {
-                    setTimeout(function(){
-                        var collapsable = $('#collapsable');
-                        collapsable.attr('class','collapse');
-                     }, 1000);
-                }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function showThankYou() {
+                document.getElementById("overlay").style.width = "100%";
 
-                $('#goodLink').on('click', function() {
-                    $.post('/im/good');
-                    hideThanksMessage();
-                });
-                $('#neutralLink').on('click', function() {
-                    $.post('/im/neutral');
-                    hideThanksMessage();
-                });
-                $('#badLink').on('click', function() {
-                    $.post('/im/bad');
-                    hideThanksMessage();
-                });
+                setTimeout(function () {
+                    document.getElementById("overlay").style.width = "0";
+                }, 2000);
+            }
+
+            $('#goodLink').on('click', function () {
+                $.post('/im/good');
+                showThankYou();
             });
+            $('#neutralLink').on('click', function () {
+                $.post('/im/neutral');
+                showThankYou();
+            });
+            $('#badLink').on('click', function () {
+                $.post('/im/bad');
+                showThankYou();
+            });
+        });
 
-        </script>
-    </head>
+    </script>
+</head>
 
-    <body>
-        <div class="office-info">Office User: <%=user%></div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 text-center">
-                    <h1><small>Today</small> I feel <small>like</small></h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-4">
-                    <a id="goodLink" data-toggle="collapse" href="#collapsable" aria-expanded="false" aria-controls="collapsable">
-                        <img src="<%=imgUrls.good%>" alt="Good" class="zoom img-responsive center-block">
-                    </a>
-                    <div class="caption text-center"><h3>Good</h3></div>
-                </div>
-                <div class="col-xs-6 col-sm-4">
-                    <a id="neutralLink" data-toggle="collapse" href="#collapsable" aria-expanded="false" aria-controls="collapsable">
-                        <img src="<%=imgUrls.neutral%>" alt="Neutral" class="zoom img-responsive center-block">
-                    </a>
-                    <div class="caption text-center"><h3>Neutral</h3></div>
-                </div>
-                <div class="col-xs-6 col-sm-4">
-                    <a id="badLink" data-toggle="collapse" href="#collapsable" aria-expanded="false" aria-controls="collapsable">
-                        <img src="<%=imgUrls.bad%>" alt="Bad" class="zoom img-responsive center-block">
-                    </a>
-                    <div class="caption text-center"><h3>Bad</h3></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 text-center">
-                    <div class="collapse" id="collapsable">
-                        <h1>Thank You !</h1>
-                    </div>
-                </div>
-            </div>
+<body>
+<div id="overlay" class="overlay">
+    <div class="overlay-content"><h1>Thank you!</h1></div>
+</div>
+<div class="office-info">Office User: <%= user %></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 text-center">
+            <h1>
+                <small>Today</small>
+                I feel
+                <small>like</small>
+            </h1>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-sm-4">
+            <button id="goodLink" style="background: url(<%= imgUrls.good %>) no-repeat;background-position: center;"
+                    class="btn btn-default mood-button center-block"></button>
+            <div class="caption text-center"><h3>Good</h3></div>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <button id="neutralLink"
+                    style="background: url(<%= imgUrls.neutral %>) no-repeat;background-position: center;"
+                    class="btn btn-default mood-button center-block"></button>
+            <div class="caption text-center"><h3>Neutral</h3></div>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <button id="badLink" style="background: url(<%= imgUrls.bad %>) no-repeat;background-position: center;"
+                    class="btn btn-default mood-button center-block"></button>
+            <div class="caption text-center"><h3>Bad</h3></div>
+        </div>
+    </div>
+</div>
 
-    </body>
+</body>
 </html>
