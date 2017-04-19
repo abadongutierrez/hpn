@@ -1,5 +1,4 @@
 var express = require('express');
-var qs = require('qs');
 var request = require('superagent');
 var hpn = express();
 
@@ -32,18 +31,20 @@ function url(uri) {
     return hpn.get('host') + '/' + hpn.get('version') + uri;
 }
 
-function postMood(mood) {
+function postMood(mood, res) {
     console.log("\nRequesting Office Mood : " + mood);
     request.post(url('/users/me/moods'))
-        .send({ mood : mood, comment : '', user: process.env.OFFICE_USER }) //no msg due to not affect analysis of messages
+        .send({ mood : mood, comment : '', user: process.env.OFFICE_USER })
         .set('Accept', 'application/json')
         .set('Authorization', 'Token ' + process.env.OFFICE_TOKEN)
-        .end(function(err, res){
+        .end(function(err, response){
             if (err) {
                 console.log("\n-Error: " + JSON.stringify(err));
+                res.send(500).send(err);
             }
             else {
-                console.log("\n-Response: " + JSON.stringify(res));
+                console.log("\n-Response: " + JSON.stringify(response));
+                res.send();
             }
         });
 }
@@ -54,13 +55,13 @@ hpn.get('/', function (req, res) {
 });
 
 hpn.post('/im/good', function(req, res) {
-    postMood('good');
+    postMood('good', res);
 });
 hpn.post('/im/neutral', function(req, res) {
-    postMood('neutral');
+    postMood('neutral', res);
 });
 hpn.post('/im/bad', function(req, res) {
-    postMood('bad');
+    postMood('bad', res);
 });
 
 // listening on

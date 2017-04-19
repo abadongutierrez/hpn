@@ -23,16 +23,27 @@
             }
 
             $('#goodLink').on('click', function () {
-                $.post('/im/good');
-                showThankYou();
+                $.post('/im/good').done(function() {
+                    showThankYou();
+                }).fail(function (error) {
+                    console.log('Mood not logged: ' + error.statusText);
+                });
+
             });
             $('#neutralLink').on('click', function () {
-                $.post('/im/neutral');
-                showThankYou();
+                $.post('/im/neutral').done(function() {
+                    showThankYou();
+                }).fail(function (error) {
+                    console.log('Mood not logged: ' + error.statusText);
+                });
+
             });
             $('#badLink').on('click', function () {
-                $.post('/im/bad');
-                showThankYou();
+                $.post('/im/bad').done(function() {
+                    showThankYou();
+                }).fail(function (error) {
+                    console.log('Mood not logged: ' + error.statusText);
+                });
             });
         });
 

@@ -4,7 +4,7 @@
   "description": "Pretotype to track hapiness in office",
   "main": "hpn.js",
   "scripts": {
-    "start": "node hpn.js"
+    "start": "node $NODE_DEBUG_OPTION hpn.js"
   },
   "repository": {
     "type": "git",
