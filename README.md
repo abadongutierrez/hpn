@@ -1,6 +1,6 @@
-# Happinessometer (pretotype)
-#### (hpn for short)
+# Ikigai Simple Web
 
- - It is a pretotype for happiness tracking at the office through a mobile device.
- - It's showing a simple UI with a few options to tap.
- - After tapping the option you should see in a short amount of time the statistics so far.
+ - Simple UI for posting mood in the office
+ - Now, we have three deployments for each office
+
+
